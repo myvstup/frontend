@@ -1,0 +1,20 @@
+h2   Score Form
+md-content.scoreForm(layout='row')
+  md-input-container.md-block(flex="20")
+    label Результат ЗНО з української мови
+    input(type='number', step='any', name='rate', ng-model='vm.userData.ukrScore', min='100', max='200')
+  md-input-container.md-block(flex='20', flex-offset='5')
+    label Результат ЗНО з математики
+    input(type='number', step='any', name='rate', ng-model='vm.userData.mathScore', min='100', max='200')
+
+  md-input-container.md-block(flex='20', flex-offset='5')
+    label Результат ЗНО з фізики
+    input(type='number', step='any', name='rate', ng-model='vm.userData.phisScore', min='100', max='200')
+
+  md-input-container.md-block(flex='20', flex-offset='5')
+    label Результат ЗНО з історії
+    input(type='number', step='any', name='rate', ng-model='vm.userData.historyScore', min='100', max='200')
+
+md-input-container.md-block(flex='20')
+  label Бал атестату (100-200)
+  input(type='number', step='any', name='rate', ng-model='vm.userData.certificateScore', min='100', max='200')
