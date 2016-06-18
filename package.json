@@ -61,8 +61,7 @@
   "wrench": "~1.5.8"
 },
 "scripts": {
-  "test": "gulp test",
-  "postinstall": "bower install && gulp"
+  "test": "gulp test"
 },
   "devDependencies": {
     "estraverse": "~4.1.0",
