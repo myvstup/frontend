@@ -10,8 +10,8 @@ export function scoreFormDirective() {
     },
     templateUrl: 'app/components/scoreForm/scoreForm.html',
     link: linkFunc,
-    controller: scoreFormController
-    // controllerAs: 'vm'
+    controller: scoreFormController,
+    controllerAs: 'vm'
   };
 
   return directive;
@@ -51,22 +51,20 @@ class scoreFormController {
     let vm = this;
 
     this.$log = $log;
-    this.contributors = [];
 
-    this.activate(githubContributor);
-  }
-
-  activate(githubContributor) {
-    return this.getContributors(githubContributor).then(() => {
-      this.$log.info('Activated Contributors View');
-    });
-  }
-
-  getContributors(githubContributor) {
-    return githubContributor.getContributors(10).then((data) => {
-      this.contributors = data;
-
-      return this.contributors;
-    });
+    vm.userData = {
+      ukr: { caption: 'Українська мова і література', isTested: true},
+      history: { caption: 'Історія України', isTested: false},
+      math: { caption: 'Математика', isTested: false},
+      biology: { caption: 'Біологія', isTested: false},
+      geography: { caption: 'Географія', isTested: false},
+      physics: { caption: 'Фізика', isTested: false},
+      chemistry: { caption: 'Хімія', isTested: false},
+      eng: { caption: 'Англійська мова', isTested: false},
+      es: { caption: 'Іспанська мова', isTested: false},
+      de: { caption: 'Німецька мова', isTested: false},
+      ru: { caption: 'Російська мова', isTested: false},
+      fr: { caption: 'Французька мова', isTested: false}
+    };
   }
 }
