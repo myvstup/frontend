@@ -1,6 +1,11 @@
+/*jshint esversion: 6 */
+
 export class MainController {
-  constructor ($timeout, webDevTec, toastr) {
+  constructor ($timeout, webDevTec, toastr, apiService, userService) {
     'ngInject';
+    this.api = apiService;
+    this.userService = userService;
+    this.userData = userService.userData;
 
     this.awesomeThings = [];
     this.classAnimation = '';
@@ -8,6 +13,13 @@ export class MainController {
     this.toastr = toastr;
 
     this.activate($timeout, webDevTec);
+}
+
+  postScores(data) {
+    return this.api.postSome('points', data)
+            .success(function(response) {
+              this.userData.id = response.userId;
+            });
   }
 
   activate($timeout, webDevTec) {

@@ -1,7 +1,14 @@
 <div layout="vertical" layout-fill>
 
   <md-content>
-    <header>
+    <md-button class="md-raised md-primary" ng-click="main.postScores(main.userData)">Post Scores</md-button>
+    <div class="">
+      User id: {{main.userData.id}}
+    </div>
+    <div class="">
+      Ukr: {{main.userData.ukr.score}}
+    </div>
+    <!-- <header>
       <acme-navbar creation-date="main.creationDate"></acme-navbar>
     </header>
 
@@ -28,7 +35,7 @@
           <md-button ng-href="{{ awesomeThing.url }}">Website</md-button>
         </div>
       </md-card>
-    </div>
+    </div> -->
   </md-content>
 
 </div>
