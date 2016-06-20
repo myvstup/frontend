@@ -1,9 +1,13 @@
 /*jshint esversion: 6 */
 
 export class MainController {
-  constructor ($timeout, webDevTec, toastr) {
+  constructor (apiService, userService, $timeout, webDevTec, toastr) {
     'ngInject';
     let controller = this;
+
+    controller.api = apiService;
+    controller.userData = userService.userData;
+
     controller.awesomeThings = [];
     controller.classAnimation = '';
     controller.creationDate = 1465734467013;
@@ -23,6 +27,7 @@ export class MainController {
 
   getUserId() {
     let controller = this;
+    console.log("controller.userData"); console.log(controller.userData);
     return this.api.getSome('points')
             .then(function(response) {
               console.log("GET data response"); console.log(response.data);
