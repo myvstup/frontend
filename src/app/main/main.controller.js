@@ -1,34 +1,32 @@
 /*jshint esversion: 6 */
 
 export class MainController {
-  constructor ($timeout, webDevTec, toastr, apiService, userService) {
+  constructor ($timeout, webDevTec, toastr) {
     'ngInject';
-    this.api = apiService;
-    this.userService = userService;
-    this.userData = userService.userData;
-
-    this.awesomeThings = [];
-    this.classAnimation = '';
-    this.creationDate = 1465734467013;
-    this.toastr = toastr;
-console.log("constructor this"); console.log(this);
+    let controller = this;
+    controller.awesomeThings = [];
+    controller.classAnimation = '';
+    controller.creationDate = 1465734467013;
+    controller.toastr = toastr;
+    console.log("constructor this"); console.log(this);
     // this.activate($timeout, webDevTec);
 }
 
   postScores(data, config) {
+    let controller = this;
     return this.api.postSome('points', data, config)
             .then(function(response) {
               console.log("POST data response"); console.log(response.data);
-              this.userData.id = response.data.userId;
+              controller.userData.id = response.data.userId;
             });
   }
 
   getUserId() {
-    var _this = this;
+    let controller = this;
     return this.api.getSome('points')
             .then(function(response) {
               console.log("GET data response"); console.log(response.data);
-              _this.userData.id = response.data.userId;
+              controller.userData.id = response.data.userId;
             });
   }
   activate($timeout, webDevTec) {
