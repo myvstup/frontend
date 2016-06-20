@@ -1,15 +1,34 @@
+/*jshint esversion: 6 */
+
 export class MainController {
   constructor ($timeout, webDevTec, toastr) {
     'ngInject';
+    let controller = this;
+    controller.awesomeThings = [];
+    controller.classAnimation = '';
+    controller.creationDate = 1465734467013;
+    controller.toastr = toastr;
+    console.log("constructor this"); console.log(this);
+    // this.activate($timeout, webDevTec);
+}
 
-    this.awesomeThings = [];
-    this.classAnimation = '';
-    this.creationDate = 1465734467013;
-    this.toastr = toastr;
-
-    this.activate($timeout, webDevTec);
+  postScores(data, config) {
+    let controller = this;
+    return this.api.postSome('points', data, config)
+            .then(function(response) {
+              console.log("POST data response"); console.log(response.data);
+              controller.userData.id = response.data.userId;
+            });
   }
 
+  getUserId() {
+    let controller = this;
+    return this.api.getSome('points')
+            .then(function(response) {
+              console.log("GET data response"); console.log(response.data);
+              controller.userData.id = response.data.userId;
+            });
+  }
   activate($timeout, webDevTec) {
     this.getWebDevTec(webDevTec);
     $timeout(() => {
