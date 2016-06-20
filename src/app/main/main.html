@@ -1,12 +1,14 @@
 <div layout="vertical" layout-fill>
 
   <md-content>
-    <md-button class="md-raised md-primary" ng-click="main.postScores(main.userData)">Post Scores</md-button>
+    <md-button class="md-raised md-primary" ng-click="main.postScores(main.userData)">Post points</md-button>
+    <md-button class="md-raised" ng-click="main.getUserId()">GET points</md-button>
+
     <div class="">
       User id: {{main.userData.id}}
     </div>
     <div class="">
-      Ukr: {{main.userData.ukr.score}}
+      Ukr: {{main.userData.subjects.ukr.score}}
     </div>
     <!-- <header>
       <acme-navbar creation-date="main.creationDate"></acme-navbar>

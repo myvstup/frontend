@@ -11,17 +11,26 @@ export class MainController {
     this.classAnimation = '';
     this.creationDate = 1465734467013;
     this.toastr = toastr;
-
-    this.activate($timeout, webDevTec);
+console.log("constructor this"); console.log(this);
+    // this.activate($timeout, webDevTec);
 }
 
-  postScores(data) {
-    return this.api.postSome('points', data)
-            .success(function(response) {
-              this.userData.id = response.userId;
+  postScores(data, config) {
+    return this.api.postSome('points', data, config)
+            .then(function(response) {
+              console.log("POST data response"); console.log(response.data);
+              this.userData.id = response.data.userId;
             });
   }
 
+  getUserId() {
+    var _this = this;
+    return this.api.getSome('points')
+            .then(function(response) {
+              console.log("GET data response"); console.log(response.data);
+              _this.userData.id = response.data.userId;
+            });
+  }
   activate($timeout, webDevTec) {
     this.getWebDevTec(webDevTec);
     $timeout(() => {
