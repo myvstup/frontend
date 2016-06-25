@@ -1,0 +1,8 @@
+div(layout='vertical', layout-fill='')
+    md-content
+      md-button.md-raised.md-primary(ng-click='vm.postScores(vm.userData)') Post points
+      md-button.md-raised(ng-click='vm.getUserId()') GET points
+      div
+        | User id: {{vm.userData.id}}
+      div
+        | Ukr: {{vm.userData.subjects.ukr.score}}

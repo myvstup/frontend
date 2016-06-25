@@ -3,9 +3,19 @@ export function routerConfig ($stateProvider, $urlRouterProvider) {
   $stateProvider
     .state('home', {
       url: '/',
-      templateUrl: 'app/main/main.html',
+      templateUrl: 'app/pages/choice.html',
       controller: 'MainController',
-      controllerAs: 'main'
+      controllerAs: 'vm'
+    }).state('field', {
+      url: '/field',
+      templateUrl: 'app/pages/field.html',
+      controller: 'MainController',
+      controllerAs: 'vm'
+    }).state('spetialization', {
+      url: '/spetialization',
+      templateUrl: 'app/pages/spetialization.html',
+      controller: 'MainController',
+      controllerAs: 'vm'
     });
 
   $urlRouterProvider.otherwise('/');
