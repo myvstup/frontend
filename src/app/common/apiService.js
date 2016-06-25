@@ -37,18 +37,16 @@ export class apiService {
   }
 
   postSome(postUrl, postData, postConfig) {
-    var postRequest = {
-       method: 'POST',
-       url: API_URL + postUrl,
-       headers: {
-         'Content-Type': 'application/json'
-       },
-       data: postData // $$state.value.config.data
-      //  ,config: {'ZNOtest':150}
-      //  ,config: postConfig
-      };
-      return this.http(postRequest);
-    // return this.setRequestStatus(this.http.post(API_URL + url, data), config);
+    // var postRequest = {
+    //    method: 'POST',
+    //    url: API_URL + postUrl,
+    //    headers: {
+    //      'Content-Type': 'application/json'
+    //    },
+    //    data: postData
+    //   };
+    //   return this.http(postRequest);
+    return this.setRequestStatus(this.http.post(API_URL + postUrl, postData), postConfig);
   }
 
   updateSome(url, data, config) {
@@ -59,17 +57,4 @@ export class apiService {
     return this.setRequestStatus(this.http.delete(API_URL + url, data), config);
   }
 
-  getContributors(limit) {
-    if (!limit) {
-      limit = 30;
-    }
-
-    return this.http.get(this.apiHost + '/contributors?per_page=' + limit)
-      .then((response) => {
-        return response.data;
-      })
-      .catch((error) => {
-        this.$log.error('XHR Failed for getContributors.\n' + angular.toJson(error.data, true));
-      });
-  }
 }

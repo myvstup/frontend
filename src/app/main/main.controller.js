@@ -3,7 +3,7 @@
 export class MainController {
   constructor (apiService, userService, $timeout, webDevTec, toastr) {
     'ngInject';
-    let controller = this;
+    const controller = this;
 
     controller.api = apiService;
     controller.userData = userService.userData;
@@ -17,7 +17,7 @@ export class MainController {
 }
 
   postScores(data, config) {
-    let controller = this;
+    const controller = this;
     return this.api.postSome('points', data, config)
             .then(function(response) {
               console.log("POST data response"); console.log(response.data);
@@ -26,7 +26,7 @@ export class MainController {
   }
 
   getUserId() {
-    let controller = this;
+    const controller = this;
     console.log("controller.userData"); console.log(controller.userData);
     return this.api.getSome('points')
             .then(function(response) {
