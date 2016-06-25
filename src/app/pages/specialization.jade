@@ -1,3 +1,5 @@
-md-button.md-accent( ui-sref='home') Почати з початку
+div(layout='column')
+  md-button.md-accent( flex='25', flex-offset='75', ui-sref='home') Почати з початку
 
 h2 Spetialization choice
+p(ng-bind='vm.specData')

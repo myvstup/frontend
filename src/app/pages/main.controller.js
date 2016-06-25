@@ -1,13 +1,14 @@
 /*jshint esversion: 6 */
 
 export class MainController {
-  constructor (apiService, userService) {
+  constructor (apiService, userService, specDataService, universDataService) {
     'ngInject';
     const controller = this;
 
     controller.api = apiService;
     controller.userData = userService.userData;
-
+    controller.specData = specDataService.specDataList;
+    controller.universData = universDataService.uniDataList;
 }
 
   postScores(data, config) {
@@ -32,6 +33,13 @@ export class MainController {
             .then(function(response) {
               controller.userData.userId = response.data.userId;
             });
+  }
+
+  convert(selected) {
+    const controller = this;
+
+    if (selected) controller.userData.cityName = selected.name;
+    console.log("message"); console.log(selected);
   }
 
 }

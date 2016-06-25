@@ -6,6 +6,8 @@ import { runBlock } from './index.run';
 import { MainController } from './pages/main.controller';
 import { apiService } from '../app/common/apiService';
 import { userService } from '../app/common/userService';
+import { specDataService } from '../app/common/specDataService';
+import { universDataService } from '../app/common/universDataService';
 import { scoreFormDirective } from '../app/components/scoreForm/scoreForm.directive';
 
 
@@ -15,5 +17,7 @@ angular.module('myVstup', ['ngAria', 'restangular', 'ui.router', 'ngMaterial', '
   .run(runBlock)
   .service('apiService', apiService)
   .service('userService', userService)
+  .service('specDataService', specDataService)
+  .service('universDataService', universDataService)
   .controller('MainController', MainController)
   .directive('scoreForm', scoreFormDirective);

@@ -1,12 +1,28 @@
-md-button.md-accent( ui-sref='home') Почати з початку
+md-divider
+div(layout='column')
+  md-button.md-accent( flex='25', flex-offset='75', ui-sref='home') Почати з початку
 
-input(type='text', step='any', name='rate', ng-model='vm.userData.cityName')
-input(type='text', step='any', name='rate', ng-model='vm.userData.uniName')
-
-input(type='number', step='any', name='rate', ng-model='vm.userData.facultatyName')
-
-input(type='number', step='any', name='rate', ng-model='vm.userData.specialityName')
-input(type='number', step='any', name='rate', ng-model='vm.userData.fieldName')
+  //- md-no-cache='ctrl.noCache',
+  //- md-item-text='city.name',
+  //- md-search-text='vm.userData.cityName',
+md-autocomplete(
+  md-selected-item='city',
+  md-items='city in vm.specData',
+  md-item-text='city.name',
+  md-min-length='0',
+  md-search-text-change='vm.convert(city)',
+  md-selected-item-change='vm.convert(city)',
+  placeholder='Введ1ть м1сто')
+  md-item-template()
+    span(md-highlight-text='vm.userData.cityName') {{city.name}}
+p City
+p(ng-bind='vm.userData.cityName')
+//- input(type='text', step='any', name='rate', ng-model='vm.userData.uniName')
+//- 
+//- input(type='number', step='any', name='rate', ng-model='vm.userData.facultatyName')
+//- 
+//- input(type='number', step='any', name='rate', ng-model='vm.userData.specialityName')
+//- input(type='number', step='any', name='rate', ng-model='vm.userData.fieldName')
 
 md-button( flex='45', flex-xs='100', ng-click='vm.postScores(vm.userData)') 
   | Get id
@@ -16,6 +32,8 @@ md-button( flex='45', flex-xs='100', ng-click='vm.postChoice(vm.userData)')
 
 h2 Field choice
 
+p User Id
 p(ng-bind='vm.userData.userId')
 
-p(ng-bind='vm.specializations')
+div(ng-repeat='city in vm.specData')
+  p(ng-bind='city.name')
