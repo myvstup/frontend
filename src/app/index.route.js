@@ -1,3 +1,5 @@
+/*jshint esversion: 6 */
+
 export function routerConfig ($stateProvider, $urlRouterProvider) {
   'ngInject';
   $stateProvider
@@ -11,9 +13,9 @@ export function routerConfig ($stateProvider, $urlRouterProvider) {
       templateUrl: 'app/pages/field.html',
       controller: 'MainController',
       controllerAs: 'vm'
-    }).state('spetialization', {
-      url: '/spetialization',
-      templateUrl: 'app/pages/spetialization.html',
+    }).state('specialization', {
+      url: '/specialization',
+      templateUrl: 'app/pages/specialization.html',
       controller: 'MainController',
       controllerAs: 'vm'
     });

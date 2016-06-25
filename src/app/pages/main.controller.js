@@ -14,7 +14,15 @@ export class MainController {
     const controller = this;
     return this.api.postSome('points', data, config)
             .then(function(response) {
-              controller.userData.id = response.data.userId;
+              controller.userData.userId = response.data.userId;
+            });
+  }
+
+  postChoice(data, config) {
+    const controller = this;
+    return this.api.postSome('get_proba', data, config)
+            .then(function(response) {
+              controller.specializations = response.data.specializations;
             });
   }
 
@@ -22,7 +30,7 @@ export class MainController {
     const controller = this;
     return this.api.getSome('points')
             .then(function(response) {
-              controller.userData.id = response.data.userId;
+              controller.userData.userId = response.data.userId;
             });
   }
 

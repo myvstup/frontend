@@ -1,1 +1,21 @@
+md-button.md-accent( ui-sref='home') Почати з початку
+
+input(type='text', step='any', name='rate', ng-model='vm.userData.cityName')
+input(type='text', step='any', name='rate', ng-model='vm.userData.uniName')
+
+input(type='number', step='any', name='rate', ng-model='vm.userData.facultatyName')
+
+input(type='number', step='any', name='rate', ng-model='vm.userData.specialityName')
+input(type='number', step='any', name='rate', ng-model='vm.userData.fieldName')
+
+md-button( flex='45', flex-xs='100', ng-click='vm.postScores(vm.userData)') 
+  | Get id
+
+md-button( flex='45', flex-xs='100', ng-click='vm.postChoice(vm.userData)') 
+  | Get answers
+
 h2 Field choice
+
+p(ng-bind='vm.userData.userId')
+
+p(ng-bind='vm.specializations')
