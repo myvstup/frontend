@@ -31,13 +31,13 @@ export class MainController {
             });
   }
 
-  getUserId() {
-    const controller = this;
-    return this.api.getSome('points')
-            .then(function(response) {
-              controller.userData.userId = response.data.userId;
-            });
-  }
+  // getUserId() {
+  //   const controller = this;
+  //   return this.api.getSome('points')
+  //           .then(function(response) {
+  //             controller.userData.userId = response.data.userId;
+  //           });
+  // }
 
   filter(list, userInput) {
     if (!list) return;
@@ -51,6 +51,16 @@ export class MainController {
     return result;
   }
 
+  getSpecList(){
+    const controller = this;
+
+    controller.userData.cityName = controller.choice.city.name;
+    controller.userData.specialityName = controller.choice.field;
+    controller.log(controller.userData);
+    controller.postChoice(controller.userData).then(function(response) {
+      controller.specializations = response.data.specializations;
+    });
+  }
 
   convert(selected) {
     const controller = this;

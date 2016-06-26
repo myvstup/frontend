@@ -20,18 +20,18 @@ md-content.md-padding(layout='column')
 
     md-divider.md-padding
 
-    //- md-selected-item-change='vm.convert(specialization)',
-    //- md-search-text-change='vm.convert(specialization)',
     
     
     md-autocomplete(
       ng-disabled="!vm.choice.city"
-      md-selected-item='vm.choice.univer',
+      md-selected-item='vm.choice.field',
       md-items='specialization in vm.filter(vm.choice.city.specializationList, searchUniver)',
       md-item-text='specialization',
       md-search-text='searchUniver',
       required,
       md-min-length='0',
+      md-search-text-change='vm.convert(specialization)',
+      md-selected-item-change='vm.convert(specialization)',
       placeholder='Введ1ть напрям')
       md-item-template
         span(md-highlight-text='searchUniver') {{specialization}}
@@ -41,20 +41,20 @@ md-content.md-padding(layout='column')
     //- input(type='number', step='any', name='rate', ng-model='vm.userData.specialityName')
     //- input(type='number', step='any', name='rate', ng-model='vm.userData.fieldName')
 
-md-button( flex='45', flex-xs='100', ng-click='vm.postScores(vm.userData)') 
-  | Get id
-
 md-button( flex='45', flex-xs='100', ng-click='vm.postChoice(vm.userData)') 
   | Get answers
 
-p User data: city name
-p(ng-bind='vm.userData.cityName')
-
-p User data: id
-p(ng-bind='vm.userData.userId')
-
-p Choice : city name
-p(ng-bind='vm.choice.city.name')
-
-p Choice: Univer name
-p(ng-bind='vm.choice.univer.name')
+md-button.md-primary( flex='45', flex-xs='100', ng-click='vm.getSpecList()') 
+  | Get answers
+  
+div
+  h2 ANSWER
+  .md-headline(ng-if="!vm.specializations") no data!!!
+  div(ng-repeat="spec in vm.specializations")
+    p М1сто: {{spec.cityName}}
+    p Ун1верситет: {{spec.universityName}}
+    p Рейтинг ун1верситету: {{spec.universityRank}}
+    p Факультет: {{spec.facultatyName}}
+    p Спец1альн1сть: {{spec.specialityName}}
+    p Ймов1рн1сть вступу: {{spec.specProbability}}
+    md-divider.md-padding
