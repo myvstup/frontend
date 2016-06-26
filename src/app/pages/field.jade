@@ -1,32 +1,45 @@
 div(layout='column')
-  md-button.md-accent( flex='25', flex-offset='75', ui-sref='home') Почати з початку
+  md-button.md-accent( flex='25', flex-offset='75',flex-offset-xs='50', ui-sref='home') Почати з початку
 md-divider
 
 h2 Field choice
-  //- md-no-cache='ctrl.noCache',
-  //- md-item-text='city.name',
-  //- md-search-text='vm.userData.cityName',
+md-content.md-padding(layout='column')
+  form()
+    md-autocomplete(
+      md-selected-item='vm.choice.city',
+      md-items='city in vm.filter(vm.specData, searchCity)',
+      md-item-text='city.name',
+      md-search-text='searchCity',
+      md-search-text-change='vm.convert(city)',
+      md-selected-item-change='vm.convert(city)',
+      required,
+      md-min-length='0',
+      placeholder='Введ1ть м1сто')
+      md-item-template
+        span(md-highlight-text='searchText') {{city.name}}
 
-div(layout='column')
-  md-content.md-padding
-    form
-      md-autocomplete(
-        md-selected-item='vm.choice.city',
-        md-items='city in vm.filter(vm.specData,searchText)',
-        md-item-text='city.name',
-        md-min-length='0',
-        md-search-text-change='vm.convert(city)',
-        md-search-text='searchText',
-        md-selected-item-change='vm.convert(city)',
-        placeholder='Введ1ть м1сто')
-        md-item-template
-          span(md-highlight-text='searchText') {{city.name}}
-      //- input(type='text', step='any', name='rate', ng-model='vm.userData.uniName')
-      //- 
-      //- input(type='number', step='any', name='rate', ng-model='vm.userData.facultatyName')
-      //- 
-      //- input(type='number', step='any', name='rate', ng-model='vm.userData.specialityName')
-      //- input(type='number', step='any', name='rate', ng-model='vm.userData.fieldName')
+    md-divider.md-padding
+
+    //- md-selected-item-change='vm.convert(specialization)',
+    //- md-search-text-change='vm.convert(specialization)',
+    
+    
+    md-autocomplete(
+      ng-disabled="!vm.choice.city"
+      md-selected-item='vm.choice.univer',
+      md-items='specialization in vm.filter(vm.choice.city.specializationList, searchUniver)',
+      md-item-text='specialization',
+      md-search-text='searchUniver',
+      required,
+      md-min-length='0',
+      placeholder='Введ1ть напрям')
+      md-item-template
+        span(md-highlight-text='searchUniver') {{specialization}}
+
+    //- input(type='text', step='any', name='rate', ng-model='vm.userData.uniName')
+    //- input(type='number', step='any', name='rate', ng-model='vm.userData.facultatyName')
+    //- input(type='number', step='any', name='rate', ng-model='vm.userData.specialityName')
+    //- input(type='number', step='any', name='rate', ng-model='vm.userData.fieldName')
 
 md-button( flex='45', flex-xs='100', ng-click='vm.postScores(vm.userData)') 
   | Get id

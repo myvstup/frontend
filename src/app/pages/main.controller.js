@@ -6,6 +6,8 @@ export class MainController {
     const controller = this;
     controller.log = $log.info;
 
+
+
     controller.api = apiService;
     controller.userData = userService.userData;
     controller.specData = specDataService.specDataList;
@@ -38,16 +40,15 @@ export class MainController {
   }
 
   filter(list, userInput) {
+    if (!list) return;
     const controller = this;
     let result = _.filter(list, function (item) {
-        return _.includes( item.name.toLowerCase(), userInput.toLowerCase());
+      if (!userInput) return true;
+      if (item.name) return _.includes( item.name.toLowerCase(), userInput.toLowerCase());
+      else return _.includes( item.toLowerCase(), userInput.toLowerCase());
     });
 
-    controller.log(result);
     return result;
-    // if (selected) controller.userData.cityName = controller.choice.city.name;
-    // controller.log("message"); controller.log(selected);
-    // controller.log("controller.choice.city"); controller.log(controller.choice.city);
   }
 
 
