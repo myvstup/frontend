@@ -1,6 +1,6 @@
 {
-  "extends": ["eslint:recommended","plugin:lodash/recommended"] ,
-  "plugins": ["angular", "lodash"],
+  "extends": ["eslint:recommended"] ,
+  "plugins": ["angular"],
   "env": {
     "es6": true,
     "browser": true,
