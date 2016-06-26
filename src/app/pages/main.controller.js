@@ -1,14 +1,16 @@
 /*jshint esversion: 6 */
 
 export class MainController {
-  constructor (apiService, userService, specDataService, universDataService) {
+  constructor (apiService, userService, specDataService, universDataService, $log) {
     'ngInject';
     const controller = this;
+    controller.log = $log.info;
 
     controller.api = apiService;
     controller.userData = userService.userData;
     controller.specData = specDataService.specDataList;
     controller.universData = universDataService.uniDataList;
+    controller.choice = {};
 }
 
   postScores(data, config) {
@@ -35,11 +37,26 @@ export class MainController {
             });
   }
 
+  filter(list, userInput) {
+    const controller = this;
+    let result = _.filter(list, function (item) {
+        return _.includes( item.name.toLowerCase(), userInput.toLowerCase());
+    });
+
+    controller.log(result);
+    return result;
+    // if (selected) controller.userData.cityName = controller.choice.city.name;
+    // controller.log("message"); controller.log(selected);
+    // controller.log("controller.choice.city"); controller.log(controller.choice.city);
+  }
+
+
   convert(selected) {
     const controller = this;
 
-    if (selected) controller.userData.cityName = selected.name;
-    console.log("message"); console.log(selected);
+    if (selected) controller.userData.cityName = controller.choice.city.name;
+    controller.log("message"); controller.log(selected);
+    controller.log("controller.choice.city"); controller.log(controller.choice.city);
   }
 
 }
