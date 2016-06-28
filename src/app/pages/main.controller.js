@@ -3,45 +3,38 @@
 export class MainController {
   constructor (apiService, userService, specDataService, universDataService, $log) {
     'ngInject';
-    const controller = this;
-    controller.log = $log.info;
+    const vm = this;
+    vm.log = $log.info;
 
 
 
-    controller.api = apiService;
-    controller.userData = userService.userData;
-    controller.specData = specDataService.specDataList;
-    controller.universData = universDataService.uniDataList;
-    controller.choice = {};
+    vm.api = apiService;
+    vm.userData = userService.userData;
+    vm.specData = specDataService.specDataList;
+    vm.universData = universDataService.uniDataList;
+    vm.choice = {};
+    // vm.choice.city = specDataService.specDataDefault;
 }
 
   postScores(data, config) {
-    const controller = this;
+    const vm = this;
     return this.api.postSome('points', data, config)
             .then(function(response) {
-              controller.userData.userId = response.data.userId;
+              vm.userData.userId = response.data.userId;
             });
   }
 
   postChoice(data, config) {
-    const controller = this;
-    return this.api.postSome('get_proba', data, config)
-            .then(function(response) {
-              controller.specializations = response.data.specializations;
-            });
+    const vm = this;
+    return this.api.postSome('get_proba', data, config);
+            // .then(function(response) {
+            //   vm.specializations = response.data.specializations;
+            // });
   }
-
-  // getUserId() {
-  //   const controller = this;
-  //   return this.api.getSome('points')
-  //           .then(function(response) {
-  //             controller.userData.userId = response.data.userId;
-  //           });
-  // }
 
   filter(list, userInput) {
     if (!list) return;
-    const controller = this;
+    const vm = this;
     let result = _.filter(list, function (item) {
       if (!userInput) return true;
       if (item.name) return _.includes( item.name.toLowerCase(), userInput.toLowerCase());
@@ -52,22 +45,29 @@ export class MainController {
   }
 
   getSpecList(){
-    const controller = this;
+    const vm = this;
 
-    controller.userData.cityName = controller.choice.city.name;
-    controller.userData.specialityName = controller.choice.field;
-    controller.log(controller.userData);
-    controller.postChoice(controller.userData).then(function(response) {
-      controller.specializations = response.data.specializations;
+    vm.userData.cityName = vm.choice.city.name;
+    vm.userData.specialityName = vm.choice.field;
+    vm.log(vm.userData);
+    vm.postChoice(vm.userData).then(function(response) {
+      vm.specializations = response.data.specializations;
     });
   }
 
   convert(selected) {
-    const controller = this;
+    const vm = this;
 
-    if (selected) controller.userData.cityName = controller.choice.city.name;
-    controller.log("message"); controller.log(selected);
-    controller.log("controller.choice.city"); controller.log(controller.choice.city);
+    if (selected) vm.userData.cityName = vm.choice.city.name;
+    vm.log("message"); vm.log(selected);
+    vm.log("vm.choice.city"); vm.log(vm.choice.city);
+  }
+
+  getProbabilityMessage (probabilityId) {
+    if (probabilityId === -1) return 'менше 5%';
+    if (probabilityId === 0)  return 'десь 40%';
+    if (probabilityId === 1)  return 'близько 80%';
+    if (probabilityId === 2)  return 'б1льше 90%';
   }
 
 }

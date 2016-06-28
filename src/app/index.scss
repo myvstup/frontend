@@ -90,6 +90,51 @@ section.jumbotron {
   }
 }
 
+// $red: #F8A7A0;
+// $orange: #F6B474;
+// $blue: #ABB1F8;
+// $green: #A7FCA1;
+
+$red: #FFCCBC;
+$orange: #FFF9C4;
+$blue: #BBDEFB;
+$green: #CCFF90;
+
+
+.red {
+  // color: darken($red, 40%);
+  // &.md-button,
+  & md-card-title {
+    background-color: $red !important;
+  }
+}
+
+.orange {
+  // color: darken($orange, 40%);
+  // &.md-button,
+  & md-card-title {
+    background-color: $orange !important;
+  }
+}
+
+
+.light {
+  // color: darken($blue, 40%);
+  // &.md-button,
+  & md-card-title {
+    background-color: $blue !important;
+  }
+}
+
+
+.green {
+  // color: darken($green, 40%);
+  // &.md-button,
+  & md-card-title {
+    background-color: $green !important;
+  }
+}
+
 /**
  *  Do not remove the comment below. It's the markers used by gulp-inject to inject
  *  all your sass files automatically

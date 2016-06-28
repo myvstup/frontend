@@ -1,5 +1,7 @@
-div(layout='column')
-  md-button.md-accent( flex='25', flex-offset='75',flex-offset-xs='50', ui-sref='home') Почати з початку
+div(layout='row', layout-align="space-between center")
+  md-button.md-accent( flex='25', ui-sref='home') <- Почати з початку
+  md-button( flex='25', ui-sref='specialization') Знайти бюджетн1 м1сця ->
+
 md-divider
 
 h2 Field choice
@@ -20,8 +22,6 @@ md-content.md-padding(layout='column')
 
     md-divider.md-padding
 
-    
-    
     md-autocomplete(
       ng-disabled="!vm.choice.city"
       md-selected-item='vm.choice.field',
@@ -41,20 +41,30 @@ md-content.md-padding(layout='column')
     //- input(type='number', step='any', name='rate', ng-model='vm.userData.specialityName')
     //- input(type='number', step='any', name='rate', ng-model='vm.userData.fieldName')
 
-md-button( flex='45', flex-xs='100', ng-click='vm.postChoice(vm.userData)') 
-  | Get answers
-
-md-button.md-primary( flex='45', flex-xs='100', ng-click='vm.getSpecList()') 
-  | Get answers
+md-button.md-primary.md-raised( flex='45', flex-xs='100', ng-disabled="!vm.userData.certificateScore", ng-click='vm.getSpecList()') 
+  | Отримати список бюджетних м1сць
   
-div
+md-content(layout="column", layout-wrap)
   h2 ANSWER
   .md-headline(ng-if="!vm.specializations") no data!!!
-  div(ng-repeat="spec in vm.specializations")
-    p М1сто: {{spec.cityName}}
-    p Ун1верситет: {{spec.universityName}}
-    p Рейтинг ун1верситету: {{spec.universityRank}}
-    p Факультет: {{spec.facultatyName}}
-    p Спец1альн1сть: {{spec.specialityName}}
-    p Ймов1рн1сть вступу: {{spec.specProbability}}
-    md-divider.md-padding
+  div(layout="row", layout-wrap)
+    div(ng-repeat="spec in vm.specializations", flex-xs="100", flex-sm="50", flex="33", flex-lg="25" )
+      //- md-card(ng-class: "{red: spec.specProbability == -1}")
+      md-card(ng-class="{red: spec.specProbability === -1, orange: spec.specProbability === 0, light: spec.specProbability == 1, green: spec.specProbability == 2}")
+        md-card-title
+          md-card-title-text
+            span.md-headline(ng-bind='spec.universityName')
+            span.md-subhead(ng-bind='spec.cityName')
+            span.md-subhead Рейтинг ун1верситету: {{spec.universityRank}}
+            span.md-subhead(ng-bind='spec.facultatyName')
+            span.md-subhead Спец1альн1сть: {{spec.specialityName}}
+            span.md-subhead(ng-class="{red: spec.specProbability === -1, orange: spec.specProbability === 0, light: spec.specProbability == 1, green: spec.specProbability == 2}")
+              strong Ймов1рн1сть вступу на бюджет 
+                span(ng-bind="vm.getProbabilityMessage(spec.specProbability)")
+            //- md-card-title-media
+            //-   .md-media-lg.card-media
+            md-card-actions(layout='row', layout-align='end center')
+              md-button.md-raised(ng-if='spec.url',  ng-href="spec.url") Сайт спец1альност1
+              md-button.md-raised(ng-if='!spec.url', 
+              ng-href="http://vstup.info/",
+              ng-class="{red: spec.specProbability === -1, orange: spec.specProbability === 0, light: spec.specProbability == 1, green: spec.specProbability == 2}") Check at source
