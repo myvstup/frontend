@@ -10,7 +10,7 @@ export function scoreFormDirective() {
     },
     templateUrl: 'app/components/scoreForm/scoreForm.html',
     link: linkFunc,
-    controller: scoreFormController,
+    controller: 'MainController',
     controllerAs: 'vm'
   };
 

@@ -7,14 +7,13 @@ md-content(layout, layout-wrap)
   md-input-container.md-block(ng-repeat="subject in vm.userData.subjects", ng-if='subject.isTested', flex-offset='5', flex-xs='90', flex-sm='45', flex='20')
     label 
       small {{subject.caption}}
-    input(type='number', step='any', name='rate', ng-model='subject.score', min='100', max='200')
-md-content(layout, layout-wrap)
+    input(type='number', step='0.1', name='rate', ng-model='subject.score', min='100', max='200')
+md-content(layout="column", layout-wrap)
   md-input-container.md-block(flex-offset='5', flex-xs='90', flex-sm='45', flex='20')
     label Атестат (100-200)
-    input(type='number', step='any', name='rate', ng-model='vm.userData.certificateScore', min='100', max='200')
-  md-content(flex-offset='5', flex-xs='90', flex-sm='45', flex='45')
-      md-checkbox(ng-model='vm.userData.addPoints.hasAddPoints', aria-label='subject.caption') Я маю додатков1 бали (МАН, ол1мп1ади, п1дготовч1 курси)
-md-input-container.md-block(ng-if='vm.userData.addPoints.hasAddPoints', flex-offset='5', flex-xs='90', flex-sm='45', flex='45')
-  label 
-    small Додаткові бали за диплом Всеукраїнської олімпіади, МАН або випуск з факультету довузівської підготовки
-  input(type='number', step='any', name='rate', ng-model='vm.userData.addPoints.score', min='0', max='20')
+    input(type='number', step='0.1', name='rate', ng-model='vm.userData.certificateScore', min='100', max='200')
+  div(layout, layout-wrap)
+    md-content(flex-offset='5', flex-xs='90', flex='45')
+        md-checkbox(ng-model='vm.userData.hasOlimpicPoints') Додаткові 10 балів за МАН або Всеукраїнські олімпіади
+    md-content(flex-offset='5', flex-xs='90', flex='45')
+        md-checkbox(ng-model='vm.userData.hasTrainingPoints') Додаткові 10 балів за випуск з факультету довузівської підготовки
