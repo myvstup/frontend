@@ -1,70 +1,34 @@
-div(layout='row', layout-align="space-between center")
-  md-button.md-accent( flex='25', ui-sref='home') <- Почати з початку
-  md-button( flex='25', ui-sref='specialization') Знайти бюджетн1 м1сця ->
-
+div(layout='row')
+  md-button.md-accent( flex='25', flex-xs='50' ui-sref='home') Почати з початку
 md-divider
 
-h2 Field choice
-md-content.md-padding(layout='column')
-  form()
-    md-autocomplete(
-      md-selected-item='vm.choice.city',
-      md-items='city in vm.filter(vm.specData, searchCity)',
-      md-item-text='city.name',
-      md-search-text='searchCity',
-      md-search-text-change='vm.convert(city)',
-      md-selected-item-change='vm.convert(city)',
-      required,
-      md-min-length='0',
-      placeholder='Введ1ть м1сто')
-      md-item-template
-        span(md-highlight-text='searchText') {{city.name}}
+md-content(layout='column')
+  md-autocomplete.md-padding(
+    md-selected-item='vm.currentUser.city',
+    md-items='city in vm.filter(vm.specData, searchCity)',
+    md-item-text='city.name',
+    md-search-text='searchCity',
+    md-search-text-change='vm.bindUser(city)',
+    md-selected-item-change='vm.bindUser(city)',
+    md-min-length='0',
+    placeholder='Введ1ть рег1он')
+    md-item-template
+      span(md-highlight-text='searchText') {{city.name}}
+  md-autocomplete.md-padding(
+    ng-disabled="!vm.currentUser.city",
+    md-selected-item='vm.currentUser.field',
+    md-items='specialization in vm.filter(vm.currentUser.city.specializationList, searchUniver)',
+    md-item-text='specialization',
+    md-search-text='searchUniver',
+    md-min-length='0',
+    md-search-text-change='vm.bindUser()',
+    md-selected-item-change='vm.bindUser()',
+    placeholder='Введ1ть напрям')
+    md-item-template
+      span(md-highlight-text='searchUniver') {{specialization}}
 
-    md-divider.md-padding
-
-    md-autocomplete(
-      ng-disabled="!vm.choice.city"
-      md-selected-item='vm.choice.field',
-      md-items='specialization in vm.filter(vm.choice.city.specializationList, searchUniver)',
-      md-item-text='specialization',
-      md-search-text='searchUniver',
-      required,
-      md-min-length='0',
-      md-search-text-change='vm.convert(specialization)',
-      md-selected-item-change='vm.convert(specialization)',
-      placeholder='Введ1ть напрям')
-      md-item-template
-        span(md-highlight-text='searchUniver') {{specialization}}
-
-    //- input(type='text', step='any', name='rate', ng-model='vm.userData.uniName')
-    //- input(type='number', step='any', name='rate', ng-model='vm.userData.facultatyName')
-    //- input(type='number', step='any', name='rate', ng-model='vm.userData.specialityName')
-    //- input(type='number', step='any', name='rate', ng-model='vm.userData.fieldName')
-
-md-button.md-primary.md-raised( flex='45', flex-xs='100', ng-disabled="!vm.userData.certificateScore", ng-click='vm.getSpecList()') 
-  | Отримати список бюджетних м1сць
+md-content.md-padding(layout, layout-align="center center")
+  md-button.md-primary.md-raised( flex='45', flex-xs='100', ng-disabled="!vm.userData.certificateScore", ng-click='vm.getSpecList()') 
+    | Отримати список бюджетних м1сць
   
-md-content(layout="column", layout-wrap)
-  h2 ANSWER
-  .md-headline(ng-if="!vm.specializations") no data!!!
-  div(layout="row", layout-wrap)
-    div(ng-repeat="spec in vm.specializations", flex-xs="100", flex-sm="50", flex="33", flex-lg="25" )
-      //- md-card(ng-class: "{red: spec.specProbability == -1}")
-      md-card(ng-class="{red: spec.specProbability === -1, orange: spec.specProbability === 0, light: spec.specProbability == 1, green: spec.specProbability == 2}")
-        md-card-title
-          md-card-title-text
-            span.md-headline(ng-bind='spec.universityName')
-            span.md-subhead(ng-bind='spec.cityName')
-            span.md-subhead Рейтинг ун1верситету: {{spec.universityRank}}
-            span.md-subhead(ng-bind='spec.facultatyName')
-            span.md-subhead Спец1альн1сть: {{spec.specialityName}}
-            span.md-subhead(ng-class="{red: spec.specProbability === -1, orange: spec.specProbability === 0, light: spec.specProbability == 1, green: spec.specProbability == 2}")
-              strong Ймов1рн1сть вступу на бюджет 
-                span(ng-bind="vm.getProbabilityMessage(spec.specProbability)")
-            //- md-card-title-media
-            //-   .md-media-lg.card-media
-            md-card-actions(layout='row', layout-align='end center')
-              md-button.md-raised(ng-if='spec.url',  ng-href="spec.url") Сайт спец1альност1
-              md-button.md-raised(ng-if='!spec.url', 
-              ng-href="http://vstup.info/",
-              ng-class="{red: spec.specProbability === -1, orange: spec.specProbability === 0, light: spec.specProbability == 1, green: spec.specProbability == 2}") Check at source
+include result.jade

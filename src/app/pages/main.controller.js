@@ -12,8 +12,8 @@ export class MainController {
     vm.userData = userService.userData;
     vm.specData = specDataService.specDataList;
     vm.universData = universDataService.uniDataList;
-    vm.choice = {};
-    // vm.choice.city = specDataService.specDataDefault;
+    vm.currentUser = {};
+    vm.currentUser.city = specDataService.specDataDefault;
 }
 
   postScores(data, config) {
@@ -47,27 +47,30 @@ export class MainController {
   getSpecList(){
     const vm = this;
 
-    vm.userData.cityName = vm.choice.city.name;
-    vm.userData.specialityName = vm.choice.field;
+    vm.userData.cityName = vm.currentUser.city.name;
+    vm.userData.specialityName = vm.currentUser.field;
     vm.log(vm.userData);
     vm.postChoice(vm.userData).then(function(response) {
       vm.specializations = response.data.specializations;
+    }).finally(function() {
+      vm.loaded = true;
     });
   }
 
-  convert(selected) {
+  bindUser() {
     const vm = this;
 
-    if (selected) vm.userData.cityName = vm.choice.city.name;
-    vm.log("message"); vm.log(selected);
-    vm.log("vm.choice.city"); vm.log(vm.choice.city);
+    if (vm.currentUser.city)  vm.userData.cityName = vm.currentUser.city.name;
+    if (vm.currentUser.field) vm.userData.specialityName = vm.currentUser.field;
+
+    vm.log(_.clone(vm.userData));
   }
 
   getProbabilityMessage (probabilityId) {
     if (probabilityId === -1) return 'менше 5%';
     if (probabilityId === 0)  return 'десь 40%';
     if (probabilityId === 1)  return 'близько 80%';
-    if (probabilityId === 2)  return 'б1льше 90%';
+    if (probabilityId === 2)  return 'більше 90%';
   }
 
 }

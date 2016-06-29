@@ -6,6 +6,7 @@ export class userService {
     'ngInject';
 
     let vm = this;
+    
     vm.userData = {};
     vm.userData.subjects = {
       ukr: { caption: 'Українська мова і література', isTested: true, score: 200},
