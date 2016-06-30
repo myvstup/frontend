@@ -8,27 +8,27 @@ md-content(layout='column')
     md-items='city in vm.filter(vm.specData, searchCity)',
     md-item-text='city.name',
     md-search-text='searchCity',
-    md-search-text-change='vm.bindUser(city)',
-    md-selected-item-change='vm.bindUser(city)',
+    md-search-text-change='vm.bindUser()',
+    md-selected-item-change='vm.bindUser()',
     md-min-length='0',
-    placeholder='Введ1ть рег1он')
+    placeholder='Регіон')
     md-item-template
       span(md-highlight-text='searchText') {{city.name}}
   md-autocomplete.md-padding(
     ng-disabled="!vm.currentUser.city",
     md-selected-item='vm.currentUser.field',
-    md-items='specialization in vm.filter(vm.currentUser.city.specializationList, searchUniver)',
+    md-items='specialization in vm.filter(vm.currentUser.city.specializationList, searchField)',
     md-item-text='specialization',
-    md-search-text='searchUniver',
+    md-search-text='searchField',
     md-min-length='0',
     md-search-text-change='vm.bindUser()',
     md-selected-item-change='vm.bindUser()',
-    placeholder='Введ1ть напрям')
+    placeholder='Напрямок підготовки')
     md-item-template
-      span(md-highlight-text='searchUniver') {{specialization}}
+      span(md-highlight-text='searchField') {{specialization}}
 
 md-content.md-padding(layout, layout-align="center center")
   md-button.md-primary.md-raised( flex='45', flex-xs='100', ng-disabled="!vm.userData.certificateScore", ng-click='vm.getSpecList()') 
-    | Отримати список бюджетних м1сць
+    | Отримати список бюджетних місць
   
 include result.jade

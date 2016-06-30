@@ -7,7 +7,8 @@ md-content(layout="column", layout-wrap)
           md-card-title-text
             span.md-headline(ng-bind='spec.universityName')
             span.md-subhead(ng-bind='spec.cityName')
-            span.md-subhead Рейтинг університету: {{spec.universityRank}}
+            span.md-subhead(ng-if='spec.universityRank < 101') Рейтинг в топ-100 університетів: {{spec.universityRank}}
+            span.md-subhead(ng-if='spec.universityRank === 101') Університет відсутній в рейтингу топ-100
             span.md-subhead(ng-bind='spec.facultatyName')
             span.md-subhead {{spec.specialityName}}
             span.md-subhead(ng-class="{red: spec.specProbability === -1, orange: spec.specProbability === 0, light: spec.specProbability == 1, green: spec.specProbability == 2}")
