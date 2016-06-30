@@ -1,6 +1,8 @@
-div(layout='column')
-  md-button.md-accent( flex='25', flex-offset='75', ui-sref='home') Почати з початку
+div(layout='row')
+  md-button.md-accent( flex='25', flex-xs='50', ui-sref='home') Почати з початку
+md-divider
 
+div(layout='column')
   md-content(layout='column')
     md-autocomplete.md-padding(
       md-selected-item='vm.currentUser.city',
