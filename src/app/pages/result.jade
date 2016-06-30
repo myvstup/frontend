@@ -17,9 +17,11 @@ md-content(layout="column", layout-wrap)
             md-card-actions(layout='row', layout-align='end center')
               md-button.md-raised(ng-if='spec.url',  
                 ng-href="{{spec.url}}",
+                target="_blank",
                 ng-class="{red: spec.specProbability === -1, orange: spec.specProbability === 0, light: spec.specProbability == 1, green: spec.specProbability == 2}") 
                 | Сайт спеціальності
               md-button.md-raised(ng-if='!spec.url', 
                 ng-href="http://vstup.info/",
+                target="_blank",
                 ng-class="{red: spec.specProbability === -1, orange: spec.specProbability === 0, light: spec.specProbability == 1, green: spec.specProbability == 2}") 
                 | Check at source
