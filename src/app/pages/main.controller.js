@@ -31,9 +31,7 @@ export class MainController {
 
   getSpecList() {
     const vm = this;
-
-    vm.userData.cityName = vm.currentUser.city.name;
-    vm.userData.specialityName = vm.currentUser.field;
+    vm.bindUser();
     vm.log(vm.userData);
     vm.postChoice(vm.userData).then(function(response) {
       vm.specializations = response.data.specializations;

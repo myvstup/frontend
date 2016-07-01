@@ -19,6 +19,11 @@
        url(../../bower_components/material-design-iconfont/iconfont/MaterialIcons-Regular.ttf) format('truetype');
 }
 
+body {
+  margin: auto;
+  max-width: 1200px;
+}
+
 .material-icons {
   font-family: 'Material Icons';
   font-weight: normal;
