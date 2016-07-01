@@ -4,6 +4,7 @@ md-divider
 
 md-content(layout='column')
   md-autocomplete.md-padding(
+    md-no-cache='true',
     md-selected-item='vm.currentUser.city',
     md-items='city in vm.filter(vm.specData, searchCity)',
     md-item-text='city.name',
@@ -15,6 +16,7 @@ md-content(layout='column')
     md-item-template
       span(md-highlight-text='searchText') {{city.name}}
   md-autocomplete.md-padding(
+    md-no-cache='true',
     ng-disabled="!vm.currentUser.city",
     md-selected-item='vm.currentUser.field',
     md-items='specialization in vm.filter(vm.currentUser.city.specializationList, searchField)',
@@ -29,6 +31,6 @@ md-content(layout='column')
 
 md-content.md-padding(layout, layout-align="center center")
   md-button.md-primary.md-raised( flex='45', flex-xs='100', ng-disabled="!vm.userData.certificateScore", ng-click='vm.getSpecList()') 
-    | Отримати список бюджетних місць
+    | Cписок бюджетних місць
   
 include result.jade

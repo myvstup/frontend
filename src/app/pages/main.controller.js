@@ -5,42 +5,31 @@ export class MainController {
     'ngInject';
     const vm = this;
     vm.log = $log.info;
-
-
-
     vm.api = apiService;
+    vm.transliterate = userService.transliterate;
     vm.userData = userService.userData;
     vm.specData = specDataService.specDataList;
     vm.universData = universDataService.uniDataList;
     vm.currentUser = {};
-    vm.currentUser.city = specDataService.specDataDefault;
 }
 
-  // postScores(data, config) {
-  //   const vm = this;
-  //   return this.api.postSome('points', data, config)
-  //           .then(function(response) {
-  //             vm.userData.userId = response.data.userId;
-  //           });
-  // }
 
   postChoice(data, config) {
     return this.api.postSome('get_proba', data, config);
   }
 
   filter(list, userInput) {
-    if (!list) return;
     const vm = this;
-    let result = _.filter(list, function (item) {
-      if (!userInput) return true;
-      if (item.name) return _.includes( item.name.toLowerCase(), userInput.toLowerCase());
-      else return _.includes( item.toLowerCase(), userInput.toLowerCase());
-    });
+    userInput = vm.transliterate(userInput);
 
+    let result = _.filter(list, function (item) {
+      if (item.name) return _.includes( item.name.toLowerCase(), userInput);
+      else return _.includes( item.toLowerCase(), userInput);
+    });
     return result;
   }
 
-  getSpecList(){
+  getSpecList() {
     const vm = this;
 
     vm.userData.cityName = vm.currentUser.city.name;
@@ -60,10 +49,9 @@ export class MainController {
     if (vm.currentUser.university) vm.userData.universityName = vm.currentUser.university.name;
     if (vm.currentUser.facultaty) vm.userData.facultatyName = vm.currentUser.facultaty.name;
     if (vm.currentUser.field) vm.userData.specialityName = vm.currentUser.field.name;
-    vm.log(_.clone(vm.userData));
   }
 
-  getProbabilityMessage (probabilityId) {
+  getProbabilityMessage(probabilityId) {
     if (probabilityId === -1) return 'менше 5%';
     if (probabilityId === 0)  return 'десь 40%';
     if (probabilityId === 1)  return 'близько 80%';

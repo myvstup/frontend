@@ -5,6 +5,7 @@ md-divider
 div(layout='column')
   md-content(layout='column')
     md-autocomplete.md-padding(
+      md-no-cache='true',
       md-selected-item='vm.currentUser.city',
       md-items='city in vm.filter(vm.universData, searchCity)',
       md-item-text='city.name',
@@ -16,6 +17,7 @@ div(layout='column')
       md-item-template
         span(md-highlight-text='searchText') {{city.name}}
     md-autocomplete.md-padding(
+      md-no-cache='true',
       ng-disabled="!vm.currentUser.city",
       md-selected-item='vm.currentUser.university',
       md-items='university in vm.filter(vm.currentUser.city.univerList, searchUniver)',
@@ -29,6 +31,7 @@ div(layout='column')
         span(md-highlight-text='searchUniver') {{university.name}}
 
     md-autocomplete.md-padding(
+      md-no-cache='true',
       ng-disabled="!vm.currentUser.university",
       md-selected-item='vm.currentUser.facultaty',
       md-items='facultaty in vm.filter(vm.currentUser.university.facultatyList, searchFacultaty)',
@@ -42,21 +45,22 @@ div(layout='column')
         span(md-highlight-text='searchFacultaty') {{facultaty.name}}
         
     md-autocomplete.md-padding(
+      md-no-cache='true',
       ng-disabled="!vm.currentUser.facultaty",
       md-selected-item='vm.currentUser.field',
       md-items='field in vm.filter(vm.currentUser.facultaty.spetializationList, searchField)',
-      md-item-text='field.name',
+      md-item-text='field',
       md-search-text='searchField',
       md-min-length='0',
       md-search-text-change='vm.bindUser()',
       md-selected-item-change='vm.bindUser()',
       placeholder='Напрямок підготовки')
       md-item-template
-        span(md-highlight-text='searchField') {{field.name}}
+        span(md-highlight-text='searchField') {{field}}
   
   
   md-content.md-padding(layout, layout-align="center center")
     md-button.md-primary.md-raised( flex='45', flex-xs='100', ng-disabled="!vm.userData.certificateScore", ng-click='vm.getSpecList()') 
-      | Отримати список бюджетних місць
+      | Ймовірність вступу
 
 include result.jade

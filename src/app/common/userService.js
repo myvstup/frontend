@@ -6,7 +6,7 @@ export class userService {
     'ngInject';
 
     let vm = this;
-    
+
     vm.userData = {};
     vm.userData.subjects = {
       ukr: { caption: 'Українська мова і література', isTested: true, score: 200},
@@ -24,6 +24,35 @@ export class userService {
     };
     vm.userData.certificateScore = 200;
   }
+
+  transliterate(text) {
+    // English to Ukrainian
+    text = text.toLowerCase()
+        .replace(/a/g, 'а')
+        .replace(/b/g, 'б')
+        .replace(/c/g, 'с')
+        .replace(/d/g, 'д')
+        .replace(/e/g, 'е')
+        .replace(/f/g, 'ф')
+        .replace(/g/g, 'г')
+        .replace(/h/g, 'х')
+        .replace(/i/g, 'і')
+        .replace(/k/g, 'к')
+        .replace(/l/g, 'л')
+        .replace(/m/g, 'м')
+        .replace(/n/g, 'н')
+        .replace(/o/g, 'о')
+        .replace(/p/g, 'п')
+        .replace(/q/g, 'к')
+        .replace(/r/g, 'р')
+        .replace(/s/g, 'с')
+        .replace(/t/g, 'т')
+        .replace(/u/g, 'ю')
+        .replace(/w/g, 'в')
+        .replace(/v/g, 'в')
+        .replace(/z/g, 'з');
+    return text;
+}
 
 
 }
