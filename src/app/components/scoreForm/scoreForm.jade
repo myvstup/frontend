@@ -15,8 +15,11 @@ md-content(layout="row", layout-wrap)
   md-input-container.md-block(flex-offset='5', flex-xs='90', flex-sm='45', flex='20')
     label Атестат (100-200)
     input(type='number', step='0.1', name='rate', ng-model='vm.userData.certificateScore', min='100', max='200')
-  div(layout, layout-wrap)
-    md-content(flex-offset='5', flex-xs='90', flex='45')
+  div(layout, layout-wrap, flex-offset='5', flex-xs='90', flex-sm='45', flex='70')
+    md-content(flex='100', flex-gt-sm='50' )
         md-checkbox(ng-model='vm.userData.hasOlimpicPoints') Додаткові 10 балів за МАН або Всеукраїнські олімпіади
-    md-content(flex-offset='5', flex-xs='90', flex='45')
+    md-content(flex='100', flex-gt-sm='50')
         md-checkbox(ng-model='vm.userData.hasTrainingPoints') Додаткові 10 балів за випуск з факультету довузівської підготовки
+
+
+//- flex-offset='5', flex-xs='90', flex='45'
