@@ -1,7 +1,11 @@
 
 md-content(layout, layout-wrap)
   div(ng-repeat="subject in vm.userData.subjects", flex='20', flex-offset='5', flex-xs='45')
-    md-checkbox(ng-model='subject.isTested', aria-label='subject.caption') {{subject.caption}}
+    md-checkbox(
+      ng-model='subject.isTested',
+      aria-label='subject.caption',
+      ng-disabled='!subject.isTested && vm.validateSubjectNumber()' )
+      | {{subject.caption}}
 md-content(layout, layout-wrap)
   md-input-container.md-block(ng-repeat="subject in vm.userData.subjects", ng-if='subject.isTested', flex-offset='5', flex-xs='90', flex-sm='45', flex='20')
     label 

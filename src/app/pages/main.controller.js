@@ -58,4 +58,12 @@ export class MainController {
     if (probabilityId === 2)  return 'більше 90%';
   }
 
+  validateSubjectNumber(){
+    const vm = this;
+    let checkedNumber = 0;
+    _.forEach(vm.userData.subjects, function (subject) {
+      if (subject.isTested) checkedNumber += 1;
+    });
+      return checkedNumber === 4;
+  }
 }
