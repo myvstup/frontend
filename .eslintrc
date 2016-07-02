@@ -1,5 +1,5 @@
 {
-  "extends": ["eslint:recommended"] ,
+  "extends": ["eslint:recommended"],
   "plugins": ["angular"],
   "env": {
     "es6": true,
@@ -12,6 +12,10 @@
   "globals": {
     "angular": true,
     "module": true,
-    "inject": true
+    "inject": true,
+    "_": true
+  },
+  "parserOptions": {
+    "sourceType": "module"
   }
 }
