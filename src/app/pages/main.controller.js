@@ -1,18 +1,40 @@
 /*jshint esversion: 6 */
 
 export class MainController {
-  constructor (apiService, userService, specDataService, universDataService, $log) {
+  constructor (apiService, userService, $log) {
     'ngInject';
     const vm = this;
     vm.log = $log.info;
     vm.api = apiService;
     vm.transliterate = userService.transliterate;
     vm.userData = userService.userData;
-    vm.specData = specDataService.specDataList;
-    vm.universData = universDataService.uniDataList;
     vm.currentUser = {};
+
+    vm.init();
 }
 
+  init() {
+    const vm = this;
+
+    vm.specData = [];
+    vm.universData = [];
+    vm.api.getSome('auto_complete_data').then(function (response) {
+      vm.universData = response.data;
+      _.forEach(vm.universData, function(city) {
+        let cityCut = {};
+        cityCut.name = city.name;
+        cityCut.specializationList = [];
+        _.forEach(city.univerList, function (university) {
+          _.forEach(university.facultatyList, function (facultaty) {
+            _.forEach(facultaty.spetializationList, function(spetialization) {
+              if (!_.includes(cityCut.specializationList, spetialization)) cityCut.specializationList.push(spetialization);
+            });
+          });
+        });
+        vm.specData.push(cityCut);
+      });
+    });
+  }
 
   postChoice(data, config) {
     return this.api.postSome('get_proba', data, config);
@@ -56,12 +78,4 @@ export class MainController {
     if (probabilityId === 2)  return 'більше 90%';
   }
 
-  validateSubjectNumber(){
-    const vm = this;
-    let checkedNumber = 0;
-    _.forEach(vm.userData.subjects, function (subject) {
-      if (subject.isTested) checkedNumber += 1;
-    });
-      return checkedNumber === 4;
-  }
 }

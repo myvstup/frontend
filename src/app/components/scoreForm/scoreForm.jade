@@ -1,5 +1,5 @@
 
-md-content(layout, layout-wrap)
+md-content.md-padding(layout, layout-wrap)
   div(ng-repeat="subject in vm.userData.subjects", flex='20', flex-offset='5', flex-xs='45')
     md-checkbox.md-primary(
       ng-model='subject.isTested',
@@ -20,6 +20,3 @@ md-content(layout="row", layout-wrap)
         md-checkbox.md-primary(ng-model='vm.userData.hasOlimpicPoints') Додаткові 10 балів за МАН або Всеукраїнські олімпіади
     md-content(flex='100', flex-gt-sm='50')
         md-checkbox.md-primary(ng-model='vm.userData.hasTrainingPoints') Додаткові 10 балів за випуск з факультету довузівської підготовки
-
-
-//- flex-offset='5', flex-xs='90', flex='45'

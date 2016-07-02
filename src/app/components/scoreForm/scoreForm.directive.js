@@ -10,7 +10,7 @@ export function scoreFormDirective() {
     },
     templateUrl: 'app/components/scoreForm/scoreForm.html',
     link: linkFunc,
-    controller: 'MainController',
+    controller: scoreFormController,
     controllerAs: 'vm'
   };
 
@@ -52,4 +52,14 @@ class scoreFormController {
 
     vm.userData = userService.userData;
   }
+
+  validateSubjectNumber(){
+    const vm = this;
+    let checkedNumber = 0;
+    _.forEach(vm.userData.subjects, function (subject) {
+      if (subject.isTested) checkedNumber += 1;
+    });
+      return checkedNumber === 4;
+  }
+
 }
