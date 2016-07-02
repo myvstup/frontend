@@ -18,12 +18,17 @@
        url(../../bower_components/material-design-iconfont/iconfont/MaterialIcons-Regular.woff) format('woff'),
        url(../../bower_components/material-design-iconfont/iconfont/MaterialIcons-Regular.ttf) format('truetype');
 }
+$primary-color: #009688;  // teal 500
+$accent-color : #ffca28;  // amber 400
 
 body {
   margin: auto;
   max-width: 1200px;
 }
 
+.app-body {
+  min-height: 100%;
+}
 .material-icons {
   font-family: 'Material Icons';
   font-weight: normal;
@@ -142,6 +147,25 @@ $green: #91f37f;
   // &.md-button,
   & md-card-title {
     background-color: $green !important;
+  }
+}
+
+footer {
+  background: $primary-color;
+  min-height: 2em;
+  margin-top: 2em;
+  a {
+    text-decoration: none;
+    color: inherit;
+
+    &:hover {
+      color: $accent-color;
+    }
+  }
+  p {
+    font-size: 0.75em;
+    font-weight: 400;
+    color: white;
   }
 }
 
