@@ -10,18 +10,17 @@ md-content(layout="column", layout-wrap)
             span.md-subhead(ng-if='spec.universityRank < 101') Рейтинг в топ-100 університетів: {{spec.universityRank}}
             span.md-subhead(ng-if='spec.universityRank === 101') Університет відсутній в рейтингу топ-100
             span.md-subhead(ng-bind='spec.facultatyName')
-            span.md-subhead {{spec.specialityName}}
+            span.md-subhead(ng-bind='spec.specialityName')
             span.md-subhead(ng-class="{red: spec.specProbability === -1, orange: spec.specProbability === 0, light: spec.specProbability == 1, green: spec.specProbability == 2}")
-              strong ЙМОВіРНіСТЬ ВСТУПУ НА БЮДЖЕТ:  
+              strong              
+                span(ng-if='!spec.examNumber')ЙМОВіРНіСТЬ ВСТУПУ НА БЮДЖЕТ:  
+                span(ng-if='spec.examNumber === 1')Вам необхідно набрати {{spec.examScore}} балів на фаховому іспиті, що ймовірність вступу на бюджет була 
+                span(ng-if='spec.examNumber > 1')Вам необхідно здати {{spec.examNumber}} фахові іспити з середнім балом {{spec.examScore}}, щоб ймовірність вступу на бюджет була 
                 span(ng-bind="vm.getProbabilityMessage(spec.specProbability)")
             md-card-actions(layout='row', layout-align='end center')
-              md-button.md-raised(ng-if='spec.url',  
-                ng-href="{{spec.url}}",
+              md-button.md-raised(
+                ng-href="{{spec.url || 'http://vstup.info/'}}",
                 target="_blank",
                 ng-class="{red: spec.specProbability === -1, orange: spec.specProbability === 0, light: spec.specProbability == 1, green: spec.specProbability == 2}") 
-                | Сайт спеціальності
-              md-button.md-raised(ng-if='!spec.url', 
-                ng-href="http://vstup.info/",
-                target="_blank",
-                ng-class="{red: spec.specProbability === -1, orange: spec.specProbability === 0, light: spec.specProbability == 1, green: spec.specProbability == 2}") 
-                | Check at source
+                span(ng-if='spec.url') Сайт спеціальності
+                span(ng-if='!spec.url') Check at source
