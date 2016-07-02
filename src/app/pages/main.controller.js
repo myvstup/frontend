@@ -20,20 +20,29 @@ export class MainController {
     vm.universData = [];
     vm.api.getSome('auto_complete_data').then(function (response) {
       vm.universData = response.data;
-      _.forEach(vm.universData, function(city) {
-        let cityCut = {};
-        cityCut.name = city.name;
-        cityCut.specializationList = [];
-        _.forEach(city.univerList, function (university) {
-          _.forEach(university.facultatyList, function (facultaty) {
-            _.forEach(facultaty.spetializationList, function(spetialization) {
-              if (!_.includes(cityCut.specializationList, spetialization)) cityCut.specializationList.push(spetialization);
-            });
+      vm.specData = vm.sortSpecicalizationList(vm.universData);
+    });
+  }
+
+  sortSpecicalizationList(universData) {
+    let citySpecializationLists = [];
+    _.forEach(universData, function(city) {
+      let cityCut = {};
+      cityCut.name = city.name;
+      cityCut.specializationList = [];
+      // efficiency tested
+      _.forEach(city.univerList, function (university) {
+        _.forEach(university.facultatyList, function (facultaty) {
+          _.forEach(facultaty.spetializationList, function(spetialization) {
+            let indexToInsert = _.sortedIndex(cityCut.specializationList, spetialization); //to avoid sorting dublicating
+            cityCut.specializationList.splice(indexToInsert, 0, spetialization);
           });
         });
-        vm.specData.push(cityCut);
       });
+      cityCut.specializationList = _.sortedUniq(cityCut.specializationList); //to avoid dublicating
+      citySpecializationLists.push(cityCut);
     });
+    return citySpecializationLists;
   }
 
   postChoice(data, config) {
