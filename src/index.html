@@ -25,19 +25,19 @@
     <![endif]-->
     <div layout= "column", layout-align="space-between" class="app-body">
 
-      <div layout layout-align='center center' class="md-padding">
-        <h2 >СЕРВІС ПОШУКУ БЮДЖЕТНИХ МІСЦЬ</h2>
+      <div>
+        <div layout layout-align='center center' class="md-padding">
+          <h2 >СЕРВІС ПОШУКУ БЮДЖЕТНИХ МІСЦЬ</h2>
+        </div>
+        <score-form class="md-padding"></score-form>
+        <div ui-view></div>
       </div>
 
-      <score-form></score-form>
-
-      <div ui-view></div>
-
-    <footer layout layout-align="center center">
-      <p class="hide-xs">© 2016 Developed by Kyiv Data Science Lab</p>
-      <p class="hide show-xs">© 2016 Developed by Kyi DS Lab</p>
-    </footer>
-  </div>
+      <footer layout layout-align="center center">
+        <p class="hide-xs">© 2016 Developed by Kyiv Data Science Lab</p>
+        <p class="hide show-xs">© 2016 Developed by Kyi DS Lab</p>
+      </footer>
+    </div>
     <!-- build:js(src) scripts/vendor.js -->
     <!-- bower:js -->
     <!-- run `gulp inject` to automatically populate bower script dependencies -->
