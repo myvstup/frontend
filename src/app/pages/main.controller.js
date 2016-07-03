@@ -1,13 +1,18 @@
 /*jshint esversion: 6 */
 
 export class MainController {
-  constructor (apiService, userService, $log) {
+  constructor (apiService, userService, dataService, $log) {
     'ngInject';
     const vm = this;
     vm.log = $log.info;
     vm.api = apiService;
+    vm.userService = userService;
     vm.transliterate = userService.transliterate;
     vm.userData = userService.userData;
+    vm.dataService = dataService;
+
+    vm.universData = vm.dataService.universitiesLists;
+    vm.specData = vm.dataService.specializationsLists;
     vm.currentUser = {};
 
     vm.init();
@@ -16,11 +21,9 @@ export class MainController {
   init() {
     const vm = this;
 
-    vm.specData = [];
-    vm.universData = [];
-    vm.api.getSome('auto_complete_data').then(function (response) {
-      vm.universData = response.data;
-      vm.specData = vm.sortSpecicalizationList(vm.universData);
+    if (!vm.dataService.universitiesLists) vm.api.getSome('auto_complete_data').then(function (response) {
+      vm.universData = vm.dataService.universitiesLists = response.data;
+      vm.specData = vm.dataService.specializationsLists = vm.sortSpecicalizationList(vm.universData);
     });
   }
 
@@ -51,7 +54,7 @@ export class MainController {
 
   filter(list, userInput) {
     const vm = this;
-    userInput = vm.transliterate(userInput);
+    userInput = vm.userService.transliterate(userInput);
 
     let result = _.filter(list, function (item) {
       if (item.name) return _.includes( item.name.toLowerCase(), userInput);

@@ -1,6 +1,5 @@
 /*jshint esversion: 6 */
 
-
 export class userService {
   constructor () {
     'ngInject';
