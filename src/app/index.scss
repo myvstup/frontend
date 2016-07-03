@@ -21,14 +21,12 @@
 $primary-color: #009688;  // teal 500
 $accent-color : #ffca28;  // amber 400
 
-body {
+.app-body {
   margin: auto;
   max-width: 1200px;
-}
-
-.app-body {
   min-height: 100%;
 }
+
 .material-icons {
   font-family: 'Material Icons';
   font-weight: normal;
