@@ -80,7 +80,7 @@ export class MainController {
     if (vm.currentUser.city)  vm.userData.cityName = vm.currentUser.city.name;
     if (vm.currentUser.university) vm.userData.universityName = vm.currentUser.university.name;
     if (vm.currentUser.facultaty) vm.userData.facultatyName = vm.currentUser.facultaty.name;
-    if (vm.currentUser.field) vm.userData.specialityName = vm.currentUser.field.name;
+    if (vm.currentUser.field) vm.userData.specialityName = vm.currentUser.field;
   }
 
   getProbabilityMessage(probabilityId) {
