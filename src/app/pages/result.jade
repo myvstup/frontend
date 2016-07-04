@@ -3,25 +3,29 @@ md-content(layout='column', layout-wrap)
   .md-headline.md-warn(ng-if='vm.errorMessage', ng-bind='vm.errorMessage')
   div(layout='row', layout-wrap)
     div(ng-repeat='spec in vm.specializations', flex-xs='100', flex-sm='50', flex='33', flex-lg='25' )
-      md-card(ng-class='{red: spec.specProbability === -1, orange: spec.specProbability === 0, light: spec.specProbability == 1, green: spec.specProbability == 2}')
+      md-card(ng-class='{red: spec.specProbability === -1, grey: spec.specProbability === 0, teal: spec.specProbability == 1, green: spec.specProbability == 2}')
         md-card-title
           md-card-title-text
-            span.md-headline(ng-bind='spec.universityName')
+            span.md-title(ng-bind='spec.universityName')
             span.md-subhead(ng-bind='spec.cityName')
-            span.md-subhead(ng-if='spec.universityRank < 101') Рейтинг в топ-100 університетів: &ensp;{{spec.universityRank}}
-            span.md-subhead(ng-if='spec.universityRank === 101') Університет відсутній в рейтингу топ-100
-            span.md-subhead(ng-bind='spec.facultatyName')
-            span.md-subhead(ng-bind='spec.specialityName')
-            span.md-subhead(ng-class='{red: spec.specProbability === -1, orange: spec.specProbability === 0, light: spec.specProbability == 1, green: spec.specProbability == 2}')
-              strong              
-                span(ng-if='!spec.examNumber') ЙМОВіРНіСТЬ ВСТУПУ НА БЮДЖЕТ&ensp;
-                span(ng-if='spec.examNumber === 1') Вам необхідно набрати {{spec.examScore}} балів на фаховому іспиті, щоб ймовірність вступу на бюджет була&ensp;
-                span(ng-if='spec.examNumber > 1') Вам необхідно здати {{spec.examNumber}} фахові іспити з середнім балом {{spec.examScore}}, щоб ймовірність вступу на бюджет була&ensp;
-                span(ng-bind='vm.getProbabilityMessage(spec.specProbability)')
-            md-card-actions(layout='row', layout-align='end center')
-              md-button.md-raised(
-                ng-href='{{spec.url || "http://vstup.info/"}}',
-                target='_blank',
-                ng-class='{red: spec.specProbability === -1, orange: spec.specProbability === 0, light: spec.specProbability == 1, green: spec.specProbability == 2}') 
-                span(ng-if='spec.url') Сайт спеціальності
-                span(ng-if='!spec.url') Check at source
+        md-card-content.md-padding
+          p.md-body-1(ng-if='spec.universityRank < 101') Рейтинг університету: &ensp;{{spec.universityRank}}
+          p.md-body-1(ng-if='spec.universityRank === 101') Університет відсутній в рейтингу топ-100
+          p.md-body-1(ng-bind='spec.facultatyName')
+          p.md-body-1(ng-bind='spec.specialityName')
+          p()
+            strong
+              span(ng-if='!spec.examNumber') ЙМОВІРНІСТЬ ВСТУПУ НА БЮДЖЕТ
+              span(ng-if='spec.examNumber === 1') Вам необхідно набрати {{spec.examScore}} балів на фаховому іспиті, щоб ймовірність вступу на бюджет була
+              span(ng-if='spec.examNumber > 1') Вам необхідно здати {{spec.examNumber}} фахові іспити з середнім балом {{spec.examScore}}, щоб ймовірність вступу на бюджет була
+              | &ensp;
+              span(ng-bind='vm.getProbabilityMessage(spec.specProbability)')
+
+          md-card-actions(layout='row', layout-align='center center')
+            md-button.md-raised(
+              flex='90',
+              ng-href='{{spec.url || "http://vstup.info/"}}',
+              target='_blank',
+              ng-class='{red: spec.specProbability === -1, grey: spec.specProbability === 0, teal: spec.specProbability == 1, green: spec.specProbability == 2}') 
+              span(ng-if='spec.url') Сайт спеціальності
+              span(ng-if='!spec.url') Check at source

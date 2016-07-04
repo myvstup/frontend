@@ -5,7 +5,7 @@
 // bower:scss
 // endbower
 
-@import url(https://fonts.googleapis.com/css?family=Roboto+Slab:400,700|Roboto:400,700,700italic,400italic);
+@import url(https://fonts.googleapis.com/css?family=Roboto+Slab:400,700|Roboto:400,500,700,700italic,400italic);
 
 @font-face {
   font-family: 'Material Icons';
@@ -23,7 +23,9 @@ $accent-color : #ffca28;  // amber 400
 
 html {
   font-family: 'Roboto Slab', serif;
-  overflow-y: scroll; //  to prevent "centering jumps" when navigating back and forth between pages with enough content to have a vertical scroll bar and pages that do not.
+  @media (min-width: 960px) {
+    overflow-y: scroll;;  //  to prevent "centering jumps" when navigating back and forth between pages with enough content to have a vertical scroll bar and pages that do not.
+  }
 }
 
 .app-body {
@@ -101,57 +103,83 @@ section.jumbotron {
 }
 
 // $red: #F8A7A0;
-// $orange: #F6B474;
-// $blue: #ABB1F8;
+// $grey: #F6B474;
+// $teal: #ABB1F8;
 // $green: #A7FCA1;
 
 // prob2 - #91f37f
 // prob_1 - #d1f2bb
 // prob_0 - #f5f6d4
 // prob_-1 - #ffae98
+$white: #fff;
 
-$red: #ffae98;
-$orange: #f5f6d4;
-$blue: #d1f2bb;
-$green: #91f37f;
+// $red: #ff6f00; // amber
+$red: #EF5350;
+$light-red: #FFCDD2;
 
+$grey: #757575;
+$light-grey: #BDBDBD;
+
+$teal:       #00897B;
+$light-teal: #B2DFDB;
+
+$green: #689F38;
+$light-green: #DCEDC8;
 
 .red {
   // color: darken($red, 40%);
   // &.md-button,
-  & md-card-title {
+  &.md-button {
     background-color: $red !important;
+    color: $white !important;
+  }
+
+  & md-card-title {
+    background-color: $light-red !important;
   }
 }
 
-.orange {
-  // color: darken($orange, 40%);
-  // &.md-button,
+.grey {
+  // color: darken($grey, 40%);
+  &.md-button {
+    background-color: $grey !important;
+    color: $white !important;
+  }
+
   & md-card-title {
-    background-color: $orange !important;
+    background-color: $light-grey !important;
   }
 }
 
 
-.light {
-  // color: darken($blue, 40%);
-  // &.md-button,
+.teal {
+  // color: darken($teal, 40%);
+  &.md-button {
+    background-color: $teal !important;
+    color: $white !important;
+  }
+
   & md-card-title {
-    background-color: $blue !important;
+    background-color: $light-teal !important;
   }
 }
 
 
 .green {
   // color: darken($green, 40%);
-  // &.md-button,
-  & md-card-title {
+  &.md-button {
     background-color: $green !important;
+    color: $white !important;
+  }
+
+  & md-card-title {
+    background-color: $light-green !important;
   }
 }
 
 footer {
-  background: $primary-color;
+  // background: $primary-color;
+  border-top: $primary-color 1px solid;
   min-height: 2em;
   margin-top: 2em;
   a {
@@ -165,7 +193,7 @@ footer {
   p {
     font-size: 0.75em;
     font-weight: 400;
-    color: white;
+    // color: $white;
   }
 }
 
