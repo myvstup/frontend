@@ -1,6 +1,6 @@
 
 md-content.md-padding(layout, layout-wrap)
-  div(ng-repeat="subject in vm.userData.subjects", flex='20', flex-offset='5', flex-xs='45')
+  div(ng-repeat="subject in vm.userData.subjects", flex='20', flex-offset='5', flex-xs='45', layout, layout-align='start center')
     md-checkbox.md-primary(
       ng-model='subject.isTested',
       aria-label='subject.caption',
