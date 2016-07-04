@@ -69,6 +69,7 @@ export class MainController {
     vm.log(vm.userData);
     vm.postChoice(vm.userData).then(function(response) {
       vm.specializations = response.data.specializations;
+      vm.errorMessage = response.data.errorMessage || undefined;
     }).finally(function() {
       vm.loaded = true;
     });
