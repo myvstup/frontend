@@ -21,9 +21,14 @@
 $primary-color: #009688;  // teal 500
 $accent-color : #ffca28;  // amber 400
 
+html {
+  font-family: 'Roboto Slab', serif;
+  overflow-y: scroll; //  to prevent "centering jumps" when navigating back and forth between pages with enough content to have a vertical scroll bar and pages that do not.
+}
+
 .app-body {
   margin: auto;
-  max-width: 1200px;
+  max-width: 1250px;
   min-height: 100%;
 }
 
@@ -52,9 +57,6 @@ $accent-color : #ffca28;  // amber 400
   font-feature-settings: 'liga';
 }
 
-html {
-  font-family: 'Roboto Slab', serif;
-}
 
 [layout=row] {
   flex-direction: row;
