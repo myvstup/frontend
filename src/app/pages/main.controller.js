@@ -21,7 +21,7 @@ export class MainController {
   init() {
     const vm = this;
 
-    if (!vm.dataService.universitiesLists) vm.api.getSome('auto_complete_data').then(function (response) {
+    if (!vm.universData) vm.api.getSome('auto_complete_data').then(function (response) {
       vm.universData = vm.dataService.universitiesLists = response.data;
       vm.specData = vm.dataService.specializationsLists = vm.sortSpecicalizationList(vm.universData);
     });
@@ -89,6 +89,18 @@ export class MainController {
     if (probabilityId === 0)  return 'десь 40%';
     if (probabilityId === 1)  return 'близько 80%';
     if (probabilityId === 2)  return 'більше 90%';
+  }
+
+  cleanUserChoice() {
+    const vm = this;
+
+    delete vm.userData.cityName;
+    delete vm.userData.universityName;
+    delete vm.userData.facultatyName;
+    delete vm.userData.specialityName;
+
+    vm.currentUser = {};
+    console.log("vm.userData"); console.log(_.clone(vm.userData));
   }
 
 }
