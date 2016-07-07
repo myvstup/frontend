@@ -102,36 +102,45 @@ section.jumbotron {
   }
 }
 
-// $red: #F8A7A0;
-// $grey: #F6B474;
-// $teal: #ABB1F8;
-// $green: #A7FCA1;
-
 // prob2 - #91f37f
 // prob_1 - #d1f2bb
 // prob_0 - #f5f6d4
 // prob_-1 - #ffae98
-$white: #fff;
-
 // $red: #ff6f00; // amber
-$red: #EF5350;
-$light-red: #FFCDD2;
 
-$grey: #757575;
-$light-grey: #BDBDBD;
+$white: #fff;
+//Variant 1
+// $red: #EF5350;
+// $light-red: #FFCDD2;
+//
+// $grey: #757575;
+// $light-grey: #BDBDBD;
+//
+// $teal:       #00897B;
+// $light-teal: #B2DFDB;
+//
+// $green: #689F38;
+// $light-green: #DCEDC8;
 
-$teal:       #00897B;
-$light-teal: #B2DFDB;
+//Variant 2
+$red: #ffae98;
+$light-red: #ffae98;
 
-$green: #689F38;
-$light-green: #DCEDC8;
+$grey: #f5f6d4;
+$light-grey: #f5f6d4;
+
+$teal:       #d1f2bb;
+$light-teal: #d1f2bb;
+
+$green: #91f37f;
+$light-green: #91f37f;
 
 .red {
   // color: darken($red, 40%);
   // &.md-button,
   &.md-button {
     background-color: $red !important;
-    color: $white !important;
+    // color: $white !important;
   }
 
   & md-card-title {
@@ -143,7 +152,7 @@ $light-green: #DCEDC8;
   // color: darken($grey, 40%);
   &.md-button {
     background-color: $grey !important;
-    color: $white !important;
+    // color: $white !important;
   }
 
   & md-card-title {
@@ -156,7 +165,7 @@ $light-green: #DCEDC8;
   // color: darken($teal, 40%);
   &.md-button {
     background-color: $teal !important;
-    color: $white !important;
+    // color: $white !important;
   }
 
   & md-card-title {
@@ -169,7 +178,7 @@ $light-green: #DCEDC8;
   // color: darken($green, 40%);
   &.md-button {
     background-color: $green !important;
-    color: $white !important;
+    // color: $white !important;
   }
 
   & md-card-title {
