@@ -66,11 +66,12 @@ export class MainController {
   getSpecList() {
     const vm = this;
     vm.bindUser();
-    vm.log(vm.userData);
+    vm.pending = true;
     vm.postChoice(vm.userData).then(function(response) {
       vm.specializations = response.data.specializations;
       vm.errorMessage = response.data.errorMessage || undefined;
     }).finally(function() {
+      vm.pending = false;
       vm.loaded = true;
     });
   }
@@ -86,8 +87,8 @@ export class MainController {
 
   getProbabilityMessage(probabilityId) {
     if (probabilityId === -1) return 'менше 5%';
-    if (probabilityId === 0)  return 'десь 40%';
-    if (probabilityId === 1)  return 'близько 80%';
+    if (probabilityId === 0)  return 'близько 40%';
+    if (probabilityId === 1)  return 'більше 70%';
     if (probabilityId === 2)  return 'більше 90%';
   }
 
@@ -100,7 +101,6 @@ export class MainController {
     delete vm.userData.specialityName;
 
     vm.currentUser = {};
-    console.log("vm.userData"); console.log(_.clone(vm.userData));
   }
 
 }

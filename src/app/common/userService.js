@@ -11,15 +11,15 @@ export class userService {
       ukr: { caption: 'Українська мова і література', isTested: true, score: 200},
       math: { caption: 'Математика', isTested: false, score: 200},
       physics: { caption: 'Фізика', isTested: false, score: 200},
-      history: { caption: 'Історія України', isTested: false},
-      biology: { caption: 'Біологія', isTested: false},
-      geography: { caption: 'Географія', isTested: false},
-      chemistry: { caption: 'Хімія', isTested: false},
-      eng: { caption: 'Англійська мова', isTested: false},
-      es: { caption: 'Іспанська мова', isTested: false},
-      de: { caption: 'Німецька мова', isTested: false},
-      ru: { caption: 'Російська мова', isTested: false},
-      fr: { caption: 'Французька мова', isTested: false}
+      history: { caption: 'Історія України', isTested: false, score: 200},
+      biology: { caption: 'Біологія', isTested: false, score: 200},
+      geography: { caption: 'Географія', isTested: false, score: 200},
+      chemistry: { caption: 'Хімія', isTested: false, score: 200},
+      eng: { caption: 'Англійська мова', isTested: false, score: 200},
+      es: { caption: 'Іспанська мова', isTested: false, score: 200},
+      de: { caption: 'Німецька мова', isTested: false, score: 200},
+      ru: { caption: 'Російська мова', isTested: false, score: 200},
+      fr: { caption: 'Французька мова', isTested: false, score: 200}
     };
     vm.userData.certificateScore = 200;
   }

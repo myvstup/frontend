@@ -1,3 +1,7 @@
+md-progress-linear.md-padding.md-warn(
+  ng-if='vm.pending',
+  md-mode="buffer",
+  value,md-buffer-value)
 md-content(layout='column', layout-wrap)
   .md-headline(ng-if='!vm.specializations && loaded') Помилка. Спеціальностей не знайдено
   .md-headline.md-warn(ng-if='vm.errorMessage', ng-bind='vm.errorMessage')
