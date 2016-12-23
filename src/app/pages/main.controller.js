@@ -25,6 +25,8 @@ export class MainController {
       vm.universData = vm.dataService.universitiesLists = response.data;
       vm.specData = vm.dataService.specializationsLists = vm.sortSpecicalizationList(vm.universData);
     });
+    // can be moved to config
+    vm.runGoogleAnalytics()
   }
 
   sortSpecicalizationList(universData) {
@@ -103,4 +105,21 @@ export class MainController {
     vm.currentUser = {};
   }
 
+  runGoogleAnalytics() {
+    function googleMagic(i,s,o,g,r,a,m) {
+      i['GoogleAnalyticsObject']=r;
+      i[r]= i[r]|| function() {
+        (i[r].q= i[r].q || []).push(arguments)
+      },
+      i[r].l=1*new Date();
+      a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];
+      a.async=1;a.src=g;
+      m.parentNode.insertBefore(a,m)
+    }
+
+    googleMagic (window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-80489581-1', 'auto');
+    ga('send', 'pageview');
+  }
 }
