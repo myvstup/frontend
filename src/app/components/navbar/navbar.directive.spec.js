@@ -23,11 +23,11 @@ describe('directive navbar', function() {
     vm = element.isolateScope().vm;
   }));
 
-  it('should be compiled', () => {
+  xit('should be compiled', () => {
     expect(element.html()).not.toEqual(null);
   });
 
-  it('should have isolate scope object with instanciate members', () => {
+  xit('should have isolate scope object with instanciate members', () => {
     expect(vm).toEqual(jasmine.any(Object));
 
     expect(vm.creationDate).toEqual(jasmine.any(Number));

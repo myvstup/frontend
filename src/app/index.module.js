@@ -10,7 +10,7 @@ import { userService } from '../app/common/userService';
 import { scoreFormDirective } from '../app/components/scoreForm/scoreForm.directive';
 
 
-angular.module('myVstup', ['ngAria', 'restangular', 'ui.router', 'ngMaterial', 'toastr'])
+angular.module('myVstup', ['ngAria', 'restangular', 'ui.router', 'ngMaterial'])
   .config(config)
   .config(routerConfig)
   .run(runBlock)
