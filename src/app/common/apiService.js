@@ -36,7 +36,7 @@ export class apiService {
   }
 
   postSome(postUrl, postData, postConfig) {
-    // var postRequest = {
+    // let postRequest = {
     //    method: 'POST',
     //    url: this.apiUrl + postUrl,
     //    headers: {

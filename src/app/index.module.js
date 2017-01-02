@@ -3,7 +3,7 @@
 import { config } from './index.config';
 import { routerConfig } from './index.route';
 import { runBlock } from './index.run';
-import { MainController } from './pages/main.controller';
+import { MainController } from './common/main.controller';
 import { apiService } from '../app/common/apiService';
 import { dataService } from '../app/common/dataService';
 import { userService } from '../app/common/userService';
