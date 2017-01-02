@@ -7,7 +7,7 @@ export class userService {
 
     vm.userData = {};
     vm.userData.subjects = {
-      ukr:      vm.generateSubject('Українська мова і література', true),
+      ukr:      vm.generateSubject('Українська мова і література', true, 199),
       math:     vm.generateSubject('Математика'),
       physics:  vm.generateSubject('Фізика'),
       history:  vm.generateSubject('Історія України'),
@@ -35,7 +35,6 @@ export class userService {
         .replace(/g/g, 'г')
         .replace(/h/g, 'х')
         .replace(/i/g, 'і')
-        .replace(/y/g, 'и')
         .replace(/k/g, 'к')
         .replace(/l/g, 'л')
         .replace(/m/g, 'м')
@@ -47,12 +46,13 @@ export class userService {
         .replace(/s/g, 'с')
         .replace(/t/g, 'т')
         .replace(/u/g, 'ю')
-        .replace(/w/g, 'в')
         .replace(/v/g, 'в')
+        .replace(/w/g, 'в')
+        .replace(/y/g, 'и')
         .replace(/z/g, 'з');
     return text;
   }
-  generateSubject(name, isTested= false) {
-    return {caption: name, isTested: isTested, score: 200}
+  generateSubject(name, isTested= false, score= 200) {
+    return {caption: name, isTested: isTested, score: score}
   }
 }
