@@ -55,5 +55,4 @@ export class apiService {
   deleteSome(url, data, config) {
     return this.setRequestStatus(this.http.delete(this.apiUrl + url, data), config);
   }
-
 }
