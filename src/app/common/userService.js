@@ -36,6 +36,7 @@ export class userService {
         .replace(/g/g, 'г')
         .replace(/h/g, 'х')
         .replace(/i/g, 'і')
+        .replace(/y/g, 'и')
         .replace(/k/g, 'к')
         .replace(/l/g, 'л')
         .replace(/m/g, 'м')

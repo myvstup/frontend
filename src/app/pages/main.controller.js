@@ -23,20 +23,21 @@ export class MainController {
 
     if (!vm.universData) vm.api.getSome('auto_complete_data').then(function (response) {
       vm.universData = vm.dataService.universitiesLists = response.data;
-      vm.specData = vm.dataService.specializationsLists = vm.sortSpecicalizationList(vm.universData);
+      vm.specData = vm.dataService.specializationsLists = vm.sortSpecicalizationList();
     });
   }
 
-  sortSpecicalizationList(universData) {
+  sortSpecicalizationList() {
     let citySpecializationLists = [];
-    _.forEach(universData, function(city) {
+
+    this.universData.forEach(function(city) {
       let cityCut = {};
       cityCut.name = city.name;
       cityCut.specializationList = [];
       // efficiency tested
-      _.forEach(city.univerList, function (university) {
-        _.forEach(university.facultatyList, function (facultaty) {
-          _.forEach(facultaty.spetializationList, function(spetialization) {
+      city.univerList.forEach( function (university) {
+        university.facultatyList.forEach( function (facultaty) {
+          facultaty.spetializationList.forEach( function(spetialization) {
             let indexToInsert = _.sortedIndex(cityCut.specializationList, spetialization); //to avoid sorting dublicating
             cityCut.specializationList.splice(indexToInsert, 0, spetialization);
           });
