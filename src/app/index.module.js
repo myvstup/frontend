@@ -18,4 +18,5 @@ angular.module('myVstup', ['ngAria', 'restangular', 'ui.router', 'ngMaterial'])
   .service('dataService', dataService)
   .service('userService', userService)
   .controller('MainController', MainController)
-  .directive('scoreForm', scoreFormDirective);
+  .directive('scoreForm', scoreFormDirective)
+  .constant('API', {getData: 'https://myvstup.herokuapp.com/api/v0/'});

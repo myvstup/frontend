@@ -1,10 +1,9 @@
 /*jshint esversion: 6 */
-const API_URL = 'https://myvstup.herokuapp.com/api/v0/';
-
 export class apiService {
-  constructor ($http, $log) {
+  constructor ($http, $log, API) {
     'ngInject';
 
+    this.apiUrl = API.getData;
     this.http = $http;
     this.log = $log.log;
   }
@@ -33,28 +32,28 @@ export class apiService {
   }
 
   getSome(url, config) {
-    return this.setRequestStatus(this.http.get(API_URL + url), config);
+    return this.setRequestStatus(this.http.get(this.apiUrl + url), config);
   }
 
   postSome(postUrl, postData, postConfig) {
     // var postRequest = {
     //    method: 'POST',
-    //    url: API_URL + postUrl,
+    //    url: this.apiUrl + postUrl,
     //    headers: {
     //      'Content-Type': 'application/json'
     //    },
     //    data: postData
     //   };
     //   return this.http(postRequest);
-    return this.setRequestStatus(this.http.post(API_URL + postUrl, postData), postConfig);
+    return this.setRequestStatus(this.http.post(this.apiUrl + postUrl, postData), postConfig);
   }
 
   updateSome(url, data, config) {
-    return this.setRequestStatus(this.http.put(API_URL + url, data), config);
+    return this.setRequestStatus(this.http.put(this.apiUrl + url, data), config);
   }
 
   deleteSome(url, data, config) {
-    return this.setRequestStatus(this.http.delete(API_URL + url, data), config);
+    return this.setRequestStatus(this.http.delete(this.apiUrl + url, data), config);
   }
 
 }
