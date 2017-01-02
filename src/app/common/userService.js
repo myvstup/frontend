@@ -3,23 +3,22 @@
 export class userService {
   constructor () {
     'ngInject';
-
-    let vm = this;
+    const vm = this;
 
     vm.userData = {};
     vm.userData.subjects = {
-      ukr: { caption: 'Українська мова і література', isTested: true, score: 200},
-      math: { caption: 'Математика', isTested: false, score: 200},
-      physics: { caption: 'Фізика', isTested: false, score: 200},
-      history: { caption: 'Історія України', isTested: false, score: 200},
-      biology: { caption: 'Біологія', isTested: false, score: 200},
-      geography: { caption: 'Географія', isTested: false, score: 200},
-      chemistry: { caption: 'Хімія', isTested: false, score: 200},
-      eng: { caption: 'Англійська мова', isTested: false, score: 200},
-      es: { caption: 'Іспанська мова', isTested: false, score: 200},
-      de: { caption: 'Німецька мова', isTested: false, score: 200},
-      ru: { caption: 'Російська мова', isTested: false, score: 200},
-      fr: { caption: 'Французька мова', isTested: false, score: 200}
+      ukr:      vm.generateSubject('Українська мова і література', true),
+      math:     vm.generateSubject('Математика'),
+      physics:  vm.generateSubject('Фізика'),
+      history:  vm.generateSubject('Історія України'),
+      biology:  vm.generateSubject('Біологія'),
+      geography: vm.generateSubject('Географія'),
+      chemistry: vm.generateSubject('Хімія'),
+      eng:      vm.generateSubject('Англійська мова'),
+      es:       vm.generateSubject('Іспанська мова'),
+      de:       vm.generateSubject('Німецька мова'),
+      ru:       vm.generateSubject('Російська мова'),
+      fr:       vm.generateSubject('Французька мова')
     };
     vm.userData.certificateScore = 200;
   }
@@ -52,7 +51,8 @@ export class userService {
         .replace(/v/g, 'в')
         .replace(/z/g, 'з');
     return text;
-}
-
-
+  }
+  generateSubject(name, isTested= false) {
+    return {caption: name, isTested: isTested, score: 200}
+  }
 }
