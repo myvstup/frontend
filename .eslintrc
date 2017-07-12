@@ -11,8 +11,9 @@
   },
   "globals": {
     "angular": true,
-    "module": true,
+    "ga": true,
     "inject": true,
+    "module": true,
     "_": true
   },
   "parserOptions": {
